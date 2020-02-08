@@ -8,20 +8,24 @@
 
 int countWord(char *a)
 {
-	char *s = a;
-	int wordCot = 0;
+	char *s;
+	int wordCot = 0, i = 0, r = 0;
 
+	s = &a[0];
 
-	for ( ; *s; s++)
+	while (*(s+i) != '\0')
 	{
-		if (((*s >= 'a') && (*s <= 'z')) || ((*s >= 'A') && (*s <= 'Z'))) {
-			s++;
-			if (!((*s >= 'a') && (*s <= 'z')) || ((*s >= 'A') && (*s <= 'Z'))) {
+		if (((*(s+i) >= 'a') && (*(s+i) <= 'z')) || ((*(s+i) >= 'A') && (*(s+i) <= 'Z'))) {
+			r++;
+		}else{
+			if (r > 0) {
 				wordCot++;
+				r = 0;
 			}
-			s--;
 		}
+		i++;
 	}
+
 	return (wordCot);
 }
 
