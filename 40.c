@@ -39,7 +39,7 @@ int main()
 	{
 		cot++;
 		printf("%d\n", p-s1+1); // 打印 s2 首字母在 s1 中的位置
-		p = p+sizeof(s2);
+		p = p+sizeof(s2)-1;
 		p = find(p, s2);        // 从新位置开始寻找 s2
 	}
 
