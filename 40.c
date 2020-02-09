@@ -7,7 +7,7 @@
 int main()
 {
 	char *s;
-	int i = 0, j = 0;
+	int i = 0, j = 0, cot = 0;
 	char s1[] = " This is a sample program and sample data.";
 	char s2[] = "sample";
 
@@ -19,11 +19,16 @@ int main()
 			j++;
 		}else {
 			if (j+1 == sizeof(s2)) {
-				printf("%d~%d\n", i-j+1, i); //
+				cot++;
+				printf("%d\n", i-j+1);
 			}
 			j = 0;
 		}
 		i++;
+	}
+
+	if (cot == 0) {
+		printf("没有s2\n");
 	}
 
 	return (0);
