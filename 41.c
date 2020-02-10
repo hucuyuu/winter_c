@@ -8,93 +8,92 @@
 #include <stdio.h>
 #include <string.h>
 
-void debug(char *i)
-{
-	printf("\n");
-	puts(i);
-}
-
-
-int replace(char *s4, char *s5, char *s6)       // 用 s6 替换 s4 中出现的第一个 s5 串，有三种情况
-{
-	char i = 0;                             // 打工仔变量
-
-	printf("s4a:%s\n", s4);
-	if (strlen(s6)-strlen(s5) > 0) {        // s4 后移
-		for (i = 0; i < strlen(s4); i++)
-		{
-			// *(s4+strlen(s4)+strlen(s6)-strlen(s5)-i) = *(s4+strlen(s4)-i);
-			// debug(s4);
-		}
-		// debug(s4);
-	}else if (strlen(s6)-strlen(s5) < 0) { // s5 前移
-		// debug(s4);
-		// s4 = s4 + 1;
-		// debug(s4);
-	}
-
-	for (i = 0; i < strlen(s6); i++)
-	{
-		*(s4+i) = *(s6+i);
-	}
-
-	printf("s4z:%s\n", s4);
-	return (0);
-}
-
-
-char *find(char *s7, char *s8) // 返回 s8 在 s7 中首字母的指针
+char *find(char *s1, char *s2) // 返回 s2 在 s1 中首字母的指针
 
 {
 	int i = 0, j = 0;
 
-	if (strlen(s8) <= 0) {
-		return (NULL);
+	if ((strlen(s2) <= 0) || (strlen(s1) < strlen(s2))) {
+		return (NULL); // 不用找了
 	}
 
-	while (*(s7+i))                 // 遍历 s7
+	while (*(s1+i))                 // 遍历 s1
 	{
-		if (*(s7+i) == s8[j]) { // 比较 s+i 与 s8[0] 是否相同，如果相同使 j++ ，在下一次 while 中比较 s+i 与 s8[j]
+		if (*(s1+i) == s2[j]) { // 比较 s+i 与 s2[0] 是否相同，如果相同使 j++ ，在下一次 while 中比较 s+i 与 s2[j]
 			j++;
 		}else {
-			j = 0;                  // 如果 s+i 与 s8[j] 不同，使 j=0 ，重新开始比较 s+i 与 s8[0]
+			j = 0;                  // 如果 s+i 与 s2[j] 不同，使 j=0 ，重新开始比较 s+i 与 s2[0]
 		}
-		if (j == strlen(s8)) {          // s8 存在于 s7 条件： s 中所有字符得到比较
-			return (s7+i-j+1);      //返回 s8 首字母在 s7 中的位置
+		if (j == strlen(s2)) {          // s2 存在于 s1 条件： s 中所有字符得到比较
+			return (s1+i-j+1);      //返回 s2 首字母在 s1 中的位置
 		}
-		i++;                            // 遍历 s7
+		i++;                            // 遍历 s1
 	}
 
 	return (NULL);                  // 没找到，返回一个空指针
 }
 
 
-int main()
+int replaceFirst(char *s1, char *s2, char *s3)  // 抹去 s1 中前 strlen(s2) 个字符， 然后使 s1 后移或前移把 s3 补在 s1 最前面
 {
-	char s1[] = " This is a sample program and sample data.";
-	char s2[] = "sample";
-	char s3[] = "reall";
-	int cot = 0; // 计数菌
-	char *p;
+	int i = 0;                              // 打工仔变量
+	int lens1 = strlen(s1);
+	int lens2 = strlen(s2);
+	int lens3 = strlen(s3);
 
-	printf("origin:%s\n", s1);
+	if (lens3-lens2 > 0) {        // s1 后移
+		for (i = 0; i < lens1-lens2+1; i++)
+		{
+			*(s1+lens1+lens3-lens2-i) = *(s1+lens1-i);
+		}
+	}else if (lens3-lens2 < 0) { // s1 前移
+		for (i = 0; i < lens1-lens3+1; i++)
+		{
+			*(s1+lens3+i) = *(s1+i+lens2);
+		}
+	}
 
-	p = find(s1, s2);
+	for (i = 0; i < lens3; i++) // 实现 strncpy()
+	{
+		*(s1+i) = *(s3+i);
+	}
 
+	return (0);
+}
+
+
+int replaceAll(char *s1, char *s2, char *s3)// 用 s3 替换 s1 中出现的所有 s2
+{
+	int cot = 0;
+	char *p = NULL;         // 工具人指针
+
+	p = find(s1, s2);       // 找 s2,找到一个替换一个
 	while (p)
 	{
 		cot++;
-		// printf("p1:%s\n", p);
-		// replace(p, s2, s3);
-		// printf("p2:%s\n", p);
+		replaceFirst(p, s2, s3);
 		p = p + strlen(s3);
-		// printf("p3:%s\n", p);
-		p = find(p, s2);
-		// printf("p4:%s\n", p);
+		p = find(p, s2); // s1 剩余部分找 s2
 	}
 
-	printf("cot:%d\nmodified:%s\n", cot, s1);
+	return (cot);
+}
 
+
+int main()
+{
+	char s1[500] = " This is a sample program and sample data."; // 因为 s1 可能会被加长，先加上 500
+	char s2[] = "sample";
+	char s3[] = "real";
+	int cot = 0;    // 计数菌
+
+	printf("origin:\"%s\"\n", s1);
+	printf("s2:\"%s\"\n", s2);
+	printf("s3:\"%s\"\n", s3);
+
+	cot = replaceAll(s1, s2, s3);
+
+	printf("cot:%d\nmodified:\"%s\"\n", cot, s1);
 
 	return (0);
 }
