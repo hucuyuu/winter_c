@@ -9,6 +9,10 @@ int ifPrime(int K)
 {
 	int i;
 
+	if (K == 1) {
+		return (0);
+	}
+
 	for (i = 2; i <= sqrt(K); i++)
 	{
 		if (K % i == 0) {
