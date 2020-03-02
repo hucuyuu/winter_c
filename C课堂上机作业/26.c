@@ -5,33 +5,30 @@
 #include <stdio.h>
 #include <math.h>
 
-int ifPrime(int K)
+int main()
 {
-	int i;
+	int K;
+	int i = 0, ifPrime = 1;
 
-	if (K == 1) {
-		return (0);
+	printf("input K:");
+	scanf("%d", &K);
+
+
+
+	if (K <= 1) {
+		printf("input error\n");
+		return (-1);
 	}
 
 	for (i = 2; i <= sqrt(K); i++)
 	{
 		if (K % i == 0) {
-			return (0); // 不是质数
+			// printf("%d\n", i);
+			ifPrime = 0; // 不是质数
 		}
 	}
 
-	return (1);// 是质数
-}
-
-
-int main()
-{
-	int K;
-
-	printf("input K:");
-	scanf("%d", &K);
-
-	if (ifPrime(K) == 0) {
+	if (ifPrime == 0) {
 		printf("%d is NOT prime.\n", K);
 	}else{
 		printf("%d is prime.\n", K);
