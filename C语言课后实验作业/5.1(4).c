@@ -1,4 +1,4 @@
-// t5.1.(1)
+//t5.1(4)
 // gcd(m,n) = gcd (n, m%n)
 
 #include <stdio.h>
@@ -24,7 +24,7 @@ int main()
 
 	printf("Input two numbers:");
 	scanf("%d %d", &a, &b);
-	printf("%d\n", gcd(a, b));
+	printf("%d\n", a*b/gcd(a, b));
 
 	return (0);
 }
