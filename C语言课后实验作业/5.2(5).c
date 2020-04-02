@@ -1,7 +1,7 @@
 //（5）整数次幂xy的求解。
 // ⑴ 编写递归函数double power(double x,int y) ，计算并返回 的值。
 // ⑵ 编写main函数，键盘输入x,y，调用power函数，输出结果。
-
+#include <stdio.h>
 double power(double x, int y)
 {
 	if (y == 0) {
