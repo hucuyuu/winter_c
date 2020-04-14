@@ -7,27 +7,21 @@
 #include <stdio.h>
 #include <string.h>
 
-int p(int n[])
-{
-	for (int i = 99; i > 0; i--)
-	{
-		printf("%d", n[i]);
-	}
-	printf("\n");
-
-	return (0);
-}
 
 
 int main()
 {
 	char a1[100] = { 0 }, b1[100] = { 0 };
-	int a[100] = { 0 }, b[100] = { 0 }, c[100] = { 0 }, lena, lenb, lenc, i, j, x;
+	int a[100] = { 0 }, b[100] = { 0 }, c[200] = { 0 }, lena, lenb, lenc, i, j, x;
 
 
 	// 输入 a1 和 b1
+	printf("输入a1:\n");
 	scanf("%s", a1);
+	printf("输入b1:\n");
 	scanf("%s", b1);
+
+	printf("得到a1*b1:\n");
 
 	lena = strlen(a1);
 	lenb = strlen(b1);
@@ -69,3 +63,15 @@ int main()
 
 	return (0);
 }
+
+
+// int p(int n[])
+// {
+// 	for (int i = 99; i > 0; i--)
+// 	{
+// 		printf("%d", n[i]);
+// 	}
+// 	printf("\n");
+//
+// 	return (0);
+// }
