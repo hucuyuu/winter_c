@@ -65,7 +65,7 @@ int main()
 				b[i][j] += (i > 0 && a[i-1][j] == -1);                  // up
 				b[i][j] += (i > 0 && j < 8 && a[i-1][j+1] == -1);       // right-up
 				b[i][j] += (j > 0 && a[i][j-1] == -1);                  // left
-				b[i][j] += (j < 80 && a[i][j+1] == -1);                 // right
+				b[i][j] += (j < 8 && a[i][j+1] == -1);                  // right
 				b[i][j] += (i < 8 && j > 0 && a[i+1][j-1] == -1);       // down-left
 				b[i][j] += (i < 8 && a[i+1][j] == -1);                  // down
 				b[i][j] += (i < 8 && j < 8 && a[i+1][j+1] == -1);       // doen-right
