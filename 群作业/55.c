@@ -20,7 +20,7 @@ int findreplace(char *s1, char *s2, char *s3)
 	int i, j, k = 0, t = 0;
 	char temp[80];
 
-	if ((*s1 == '\0') || (*s2 == '\0')) {
+	if ((*s1 == '\0') && (*s2 == '\0')) {
 		return (0);
 	}
 	for (i = 0; s1[i] != '\0'; i++)
@@ -36,7 +36,7 @@ int findreplace(char *s1, char *s2, char *s3)
 				// printf("			before s1[j]:%s\n", s1);
 				strcpy(temp, &s1[j]);
 				strcpy(s1+i, s3);
-				i = i+strlen(s2)-2;
+				i = i+strlen(s3);
 				strcpy(s1+i, temp);
 				// printf("			after s1:%s\n", s1);
 				t = 1;
@@ -51,7 +51,7 @@ int findreplace(char *s1, char *s2, char *s3)
 int main()
 {
 	char s1[80] = "This is a sample program and sample data.";
-	char s2[10] = "sample", s3[10] = "real", t;
+	char s2[10] = "sample", s3[10] = "", t;
 
 	t = findreplace(s1, s2, s3);
 	if (t) {

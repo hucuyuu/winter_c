@@ -10,17 +10,6 @@
 #include <stdio.h>
 #include <string.h>
 
-int print(char(*p)[10])
-{
-	for (int i = 0; i < 10; i++)
-	{
-		printf("%s\n", p[i]);
-	}
-
-	return (0);
-}
-
-
 int merge(char (*s1)[10], char (*s2)[10], char (*s3)[10])
 {
 	int n = 0, i = 0, j = 0;
