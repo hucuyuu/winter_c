@@ -25,6 +25,9 @@ int countWord(char *a)
 		}
 		i++;
 	}
+	if (r > 0) {
+		wordCot++;
+	}
 
 	return (wordCot);
 }
