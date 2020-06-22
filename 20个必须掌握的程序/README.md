@@ -383,5 +383,5 @@ fclose(fp);
 2. 吉根林, 陈波. C语言程序设计实践教程学习辅导[M]. 科学出版社, 2018.
 
 <center class="half">
-    <img src="assets/C语言程序设计实践教程.jpg" width="200"/>&nbsp;&nbsp;&nbsp;<img src="assets/C语言程序设计实践教程学习辅导.jpg" width="200"/>
+    <img src="assets/C语言程序设计实践教程.jpg" width="200"/><img src="assets/C语言程序设计实践教程学习辅导.jpg" width="200"/>
 </center>
